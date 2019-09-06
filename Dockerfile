@@ -3,7 +3,14 @@ FROM chifleytech/sqlcd-ui-build:latest
 FROM node:12.8.1
 RUN apt-get update && apt-get install -y xsel
 RUN npm install -g serve
+RUN npm install http-proxy --save
+
 COPY --from=0 /root/build /root/build
+COPY proxy.js /root/proxy.js
+COPY run.sh /root/run.sh
+
 WORKDIR /root
-EXPOSE 5000
-CMD serve -s build
+RUN chmod 755 run.sh
+EXPOSE 8080
+#CMD serve -s build
+CMD ["/bin/bash", "run.sh"]
