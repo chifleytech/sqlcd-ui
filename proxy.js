@@ -1,7 +1,7 @@
 var http = require('http'),
     httpProxy = require('http-proxy');
 
-//
+
 // Create a proxy server with custom application logic
 //
 var proxy = httpProxy.createProxyServer({});
@@ -12,14 +12,19 @@ var proxy = httpProxy.createProxyServer({});
 // also you can use `proxy.ws()` to proxy a websockets request
 //
 var server = http.createServer(function(req, res) {
-    // You can define here your custom logic to handle the request
-    // and then proxy the request.
-    const url = ""+req.url
 
-    if(url.includes("/api/")){
-        proxy.web(req, res, { target: 'http://_server_' });
-    }else{
-        proxy.web(req, res, { target: 'http://_client_' });
+    try {
+        // You can define here your custom logic to handle the request
+        // and then proxy the request.
+        const url = ""+req.url
+
+        if(url.includes("/api/")){
+            proxy.web(req, res, { target: 'http://_server_' }, function(e) {console.error(e)});
+        }else{
+            proxy.web(req, res, { target: 'http://_client_' }, function(e) {console.error(e)});
+        }
+    }catch(error){
+        console.error(error)
     }
 });
 
