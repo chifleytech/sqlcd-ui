@@ -12,6 +12,6 @@ COPY run.sh /root/run.sh
 WORKDIR /root
 RUN npm install http-proxy --save
 RUN chmod 755 run.sh
-EXPOSE 8080
+
 #CMD serve -s build
 CMD ["/bin/bash", "run.sh"]
