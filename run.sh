@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-echo "BACKEND: "$BACKEND
-echo "FRONTEND: "$FRONTEND
-sed -i 's/_server_/'"$BACKEND"'/g' proxy.js
-sed -i 's/_client_/'"$FRONTEND"'/g' proxy.js
-sed -i 's/_port_/'"$PORT"'/g' proxy.js
+echo "BACKEND: "$PROXY_BACKEND
+echo "FRONTEND: "$PROXY_FRONTEND
+sed -i 's/_server_/'"$PROXY_BACKEND"'/g' proxy.js
+sed -i 's/_client_/'"$PROXY_FRONTEND"'/g' proxy.js
+sed -i 's/_port_/'"$PROXY_LISTEN_PORT"'/g' proxy.js
 nohup node proxy.js proxy.log > output.log &
 serve -s build
