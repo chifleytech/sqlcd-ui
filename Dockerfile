@@ -7,6 +7,7 @@ RUN npm install http-proxy --save
 
 COPY --from=0 /root/build /root/build
 COPY proxy.js /root/proxy.js
+COPY proxy.js.template /root/proxy-template.js
 COPY run.sh /root/run.sh
 
 WORKDIR /root
