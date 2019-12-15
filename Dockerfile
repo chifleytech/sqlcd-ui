@@ -1,4 +1,4 @@
-FROM chifleytech/sqlcd-ui-build:1.1.0
+FROM chifleytech/sqlcd-ui-build:1.1.1
 
 FROM node:12.8.1
 RUN apt-get update && apt-get install -y xsel
