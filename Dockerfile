@@ -1,4 +1,4 @@
-FROM chifleytech/sqlcd-ui-build:master
+FROM chifleytech/sqlcd-ui-build:datalake_demo
 
 FROM node:12.8.1
 RUN apt-get update && apt-get install -y xsel
